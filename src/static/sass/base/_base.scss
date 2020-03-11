@@ -49,6 +49,10 @@ body {
 	background-color: $color-background;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 html {
    // this defines what 1rem is --> font root size 
 	 font-size: 62.5%; // 10/16, 1rem = 10px; 

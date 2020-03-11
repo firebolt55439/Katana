@@ -27,6 +27,12 @@ export default class MovieGenre extends Component {
             <div onClick={() => this.handleToggleModal()}
                className={"movieShowcase__container--movie" + (netflixUrl ? "__netflix" : "")}>
                <img src={this.props.posterUrl} className="movieShowcase__container--movie-image" />
+               <div className={"movieShowcase__container--movie__reveal"}>
+                  <div className={"movieShowcase__container--movie__reveal--text"}>
+                     <h1 className={"movieShowcase__container--movie__reveal--text__title"}>{this.props.movie.title || this.props.movie.name}</h1>
+                     <span className={"movieShowcase__container--movie__reveal--text__desc"}>{this.props.movie.overview}</span>
+                  </div>
+               </div>
             </div>
             <Modal show={this.state.toggleModal} movie={this.props.movie} modalClosed={this.closeModal}>
                <MovieDetails movie={this.props.movie} />

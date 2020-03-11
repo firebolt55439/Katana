@@ -13,7 +13,7 @@ export function getMovieRows(movies, url) {
         key={movie.id}
         url={url}
         posterUrl={movieImageUrl}
-        movie={movie} />
+        movie={movie} />;
 
       return movieComponent;
     }

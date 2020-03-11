@@ -14,9 +14,9 @@ class TrendingMovies extends Component {
   }
 
   render() {
-    let movies
-    // Call getMoviesRows function only when we get the data back 
-    // from the API through redux 
+    let movies;
+    // Call getMoviesRows function only when we get the data back
+    // from the API through redux
     if (this.props.trending.data) {
       const url = `/trending/all/week?api_key=${API_KEY}&language=en-US`;
       movies = getMovieRows(this.props.trending.data, url);
@@ -28,7 +28,7 @@ class TrendingMovies extends Component {
           {movies}
         </div>
       </>
-    )
+    );
   }
 }
 

@@ -23,7 +23,7 @@ class Layout extends Component {
   }
 
   /** Make API call as soon as the user starts typing.  */
-  makeAipCall = (searchItem) => {
+  makeApiCall = (searchItem) => {
     const url = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY_SECONDARY}&language=en-US&include_adult=false&query=${searchItem}`;
 
     axios.get(url)
@@ -66,7 +66,7 @@ class Layout extends Component {
 
     const userInput = event.target.value;
     /** Pass in the user input to make the API call. */
-    this.makeAipCall(userInput);
+    this.makeApiCall(userInput);
 
     /** If the input is empty don't display the movie list. */
     if (userInput === "") {
