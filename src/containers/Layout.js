@@ -7,6 +7,8 @@ import Movie from '../components/Movie/Movie';
 import Modal from '../components/UI/Modal';
 import MovieDetails from '../components/Movie/MovieDetails';
 
+import { API_KEY, API_KEY_SECONDARY } from '../store/actions/index';
+
 class Layout extends Component {
 
   state = {
@@ -22,7 +24,7 @@ class Layout extends Component {
 
   /** Make API call as soon as the user starts typing.  */
   makeAipCall = (searchItem) => {
-    const url = `https://api.themoviedb.org/3/search/multi?api_key=9ea839ec7891591994ec0f540b4b199f&language=en-US&include_adult=false&query=${searchItem}`;
+    const url = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY_SECONDARY}&language=en-US&include_adult=false&query=${searchItem}`;
 
     axios.get(url)
       .then(res => {
@@ -82,11 +84,11 @@ class Layout extends Component {
     /** Make the appropriate API call to get the details for a single movie or tv show. */
     if (movie.media_type === "movie") {
       const movieId = movie.id;
-      url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=224ce27b38a3805ecf6f6c36eb3ba9d0`;
+      url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`;
 
     } else if (movie.media_type === "tv") {
       const tvId = movie.id
-      url = `https://api.themoviedb.org/3/tv/${tvId}?api_key=224ce27b38a3805ecf6f6c36eb3ba9d0`;
+      url = `https://api.themoviedb.org/3/tv/${tvId}?api_key=${API_KEY}`;
     }
 
     axios.get(url)

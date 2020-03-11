@@ -9,7 +9,8 @@ export const FETCH_HORROR_MOVIES = 'FETCH_HORROR_MOVIES';
 export const FETCH_ROMANCE_MOVIES = 'FETCH_ROMANCE_MOVIES';
 export const FETCH_DOCUMENTARIES = 'FETCH_DOCUMENTARIES';
 
-const API_KEY = '224ce27b38a3805ecf6f6c36eb3ba9d0';
+export const API_KEY = '224ce27b38a3805ecf6f6c36eb3ba9d0';
+export const API_KEY_SECONDARY = '9ea839ec7891591994ec0f540b4b199f';
 
 export function fetchTrending() {
   const request = axios.get(`/trending/all/week?api_key=${API_KEY}&language=en-US`);

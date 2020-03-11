@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { fetchTopRated } from '../store/actions/index';
 import { getMovieRows } from '../getMovie';
 
+import { API_KEY } from '../store/actions/index';
+
 class TopRated extends Component {
 
   componentWillMount() {
@@ -16,7 +18,7 @@ class TopRated extends Component {
     // Call getMoviesRows function only when we get the data back 
     // from the API through redux 
     if (this.props.topRated.data) {
-      const url = "/movie/top_rated?api_key=224ce27b38a3805ecf6f6c36eb3ba9d0&language=en-US";
+      const url = `/movie/top_rated?api_key=${API_KEY}&language=en-US`;
       movies = getMovieRows(this.props.topRated.data, url);
     }
     return (
