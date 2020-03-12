@@ -3,6 +3,7 @@ import axios from '../../axios-movies';
 export const FETCH_TRENDING = 'FETCH_TRENDING';
 export const FETCH_NETFLIX_ORIGINALS = 'FETCH_NETFLIX_ORIGINALS';
 export const FETCH_TOP_RATED = 'FETCH_TOP_RATED';
+export const FETCH_POPULAR_TV = 'FETCH_POPULAR_TV';
 export const FETCH_ACTION_MOVIES = 'FETCH_ACTION_MOVIES';
 export const FETCH_COMEDY_MOVIES = 'FETCH_COMEDY_MOVIES';
 export const FETCH_HORROR_MOVIES = 'FETCH_HORROR_MOVIES';
@@ -35,6 +36,15 @@ export function fetchTopRated() {
 
   return {
     type: FETCH_TOP_RATED,
+    payload: request
+  }
+}
+
+export function fetchPopularTv() {
+  const request = axios.get(`/tv/popular?api_key=${API_KEY}&language=en-US`)
+
+  return {
+    type: FETCH_POPULAR_TV,
     payload: request
   }
 }
