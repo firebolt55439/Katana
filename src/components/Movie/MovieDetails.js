@@ -27,8 +27,14 @@ export default class MovieDetails extends Component {
     if (this.props.movie.number_of_episodes) {
       info.push(this.props.movie.number_of_episodes.toString() + " episode" + (this.props.movie.number_of_episodes == 1 ? "" : "s"));
     }
-    if (this.props.movie.spoken_languages) {
-      info.push(this.props.movie.spoken_languages[0].name);
+    if (this.props.movie.spoken_languages && this.props.movie.spoken_languages.length > 0) {
+      var elem = this.props.movie.spoken_languages[0];
+      for (const language of this.props.movie.spoken_languages) {
+        if (language.name === "English") {
+          elem = language;
+        }
+      }
+      info.push(elem.name);
     }
     return (
       <Aux>

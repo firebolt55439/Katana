@@ -21,7 +21,7 @@ class ComedyMovies extends Component {
     }
     return (
       <>
-        <h1 className="movieShowcase__heading">Comedy Movies</h1>
+        <h1 className="movieShowcase__heading">Comedies</h1>
         <div className="movieShowcase__container">
           {movies}
         </div>

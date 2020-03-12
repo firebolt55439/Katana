@@ -6,7 +6,6 @@ import MainContent from './MainContent';
 import Movie from '../components/Movie/Movie';
 import Modal from '../components/UI/Modal';
 import MovieDetails from '../components/Movie/MovieDetails';
-import MovieGenre from '../components/MovieGenre';
 
 import { API_KEY, API_KEY_SECONDARY } from '../store/actions/index';
 
@@ -21,6 +20,24 @@ class Layout extends Component {
     toggleModal: false,
     /** Holds the movie information for a single movie. */
     movieOverview: {},
+  }
+
+  constructor(props) {
+    super(props)
+    this.escFunction = this.escFunction.bind(this);
+  }
+
+  escFunction(event){
+    if (event.keyCode === 27 && !this.state.toggleMovieList) {
+      this.setState({toggleMovieList: true});
+    }
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.escFunction, false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.escFunction, false);
   }
 
   /** Make API call as soon as the user starts typing.  */
@@ -41,16 +58,10 @@ class Layout extends Component {
             movieImageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
 
             /** Set the movie object to our Movie component */
-            const movieComponent2 = <Movie
+            const movieComponent = <Movie
               movieDetails={() => this.selectMovieHandler(movie)}
               key={movie.id}
               movieImage={movieImageUrl}
-              movie={movie} />;
-
-            const movieComponent = <MovieGenre
-              key={movie.id}
-              url={url}
-              posterUrl={movieImageUrl}
               movie={movie} />;
 
             /** Push our movie component to our movieRows array */
@@ -120,7 +131,7 @@ class Layout extends Component {
         <Navbar showMovies={this.onSearchHandler} />
         {
           this.state.toggleMovieList ? <MainContent /> : <div
-            className="container"><div className="movieShowcase"><div className="movieShowcase__container">{this.state.MovieList}</div></div></div>
+            className="search-container">{this.state.MovieList}</div>
         }
 
         <Modal show={this.state.toggleModal}
