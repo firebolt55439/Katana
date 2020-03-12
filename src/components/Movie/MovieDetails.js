@@ -1,36 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Aux from '../../hoc/Aux';
 import AddIcon from '../../static/images/add.svg';
 import PlayIcon from '../../static/images/play-button.svg';
 
-export default function MovieDetails(props) {
-  return (
-    <Aux>
-      <div className="modal__container">
-        <h1 className="modal__title">
-          {props.movie.title || props.movie.name}
-        </h1>
-        <p className="modal__info">
-          <span className="modal__rating">
-            Rating: {props.movie.vote_average * 10}%{" "}
-          </span>
-          Release date: {props.movie.release_date || props.movie.first_air_date}  Runtime: {props.movie.runtime || props.movie.episode_run_time}m
-        </p>
-        <p className="modal__episode">
-          {props.movie.number_of_episodes ? " Episodes: " + props.movie.number_of_episodes : ""}
-          {props.movie.number_of_seasons ? " Seasons: " + props.movie.number_of_seasons : ""}
-        </p>
-        <p className="modal__overview">{props.movie.overview}</p>
-        <button className="modal__btn modal__btn--red">
-          <PlayIcon className="modal__btn--icon" />
-          Play
-        </button>
-        <button className="modal__btn">
-          <AddIcon className="modal__btn--icon" />
-          My List
-        </button>
-      </div>
-    </Aux>
-  );
+export default class MovieDetails extends Component {
+  render() {
+    if (this.props.isClicked) {
+      console.log(this.props.movie);
+    }
+    let date;
+    const raw_date = this.props.movie.release_date || this.props.movie.last_air_date;
+    if (raw_date !== undefined) {
+      const dt = Date.parse(raw_date);
+      const dtf = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' });
+      const [{ value: mo },,{ value: da },,{ value: ye }] = dtf.formatToParts(dt) ;
+      // date = `${mo} ${da}, ${ye}`;
+      date = ye;
+    }
+    const runtime = this.props.movie.runtime || (Array.isArray(this.props.movie.episode_run_time) ? this.props.movie.episode_run_time[0] : this.props.movie.episode_run_time);
+    const runtime_str = (runtime < 60 ? (runtime.toString() + "m") : (Math.floor(runtime / 60).toString() + "h " + (runtime % 60) + "m"));
+    let info = [date, runtime_str];
+    if (this.props.movie.number_of_seasons) {
+      info.push(this.props.movie.number_of_seasons.toString() + " season" + (this.props.movie.number_of_seasons == 1 ? "" : "s"));
+    }
+    if (this.props.movie.number_of_episodes) {
+      info.push(this.props.movie.number_of_episodes.toString() + " episode" + (this.props.movie.number_of_episodes == 1 ? "" : "s"));
+    }
+    if (this.props.movie.spoken_languages) {
+      info.push(this.props.movie.spoken_languages[0].name);
+    }
+    return (
+      <Aux>
+        <div className="modal__container">
+          <h1 className="modal__title">
+            {this.props.movie.title || this.props.movie.name}
+          </h1>
+          <p className="modal__tagline">{this.props.movie.tagline}</p>
+          <p className="modal__info">
+            {info.join(" | ")}
+          </p>
+          <p className="modal__overview">{this.props.movie.overview}</p>
+          <button className="modal__btn modal__btn--red">
+            <PlayIcon className="modal__btn--icon" />
+            Play
+          </button>
+          <button className="modal__btn">
+            <AddIcon className="modal__btn--icon" />
+            My List
+          </button>
+        </div>
+      </Aux>
+    );
+  }
 }

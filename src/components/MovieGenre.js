@@ -1,15 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 import Modal from '../components/UI/Modal';
 import MovieDetails from '../components/Movie/MovieDetails';
 
+import { API_KEY } from '../store/actions/index';
+import axios from 'axios';
+
 export default class MovieGenre extends Component {
    state = {
-      toggleModal: false
+      toggleModal: false,
+      downloadedMovie: null
    }
 
    handleToggleModal = () => {
-      this.setState({ toggleModal: true });
+     const url = "first_air_date" in this.props.movie ? `https://api.themoviedb.org/3/tv/${this.props.movie.id}?api_key=${API_KEY}&language=en-US`
+                                                      : `https://api.themoviedb.org/3/movie/${this.props.movie.id}?api_key=${API_KEY}&language=en-US`;
+     axios
+       .get(url)
+       .then(res => {
+         this.setState({ toggleModal: true, downloadedMovie: res.data });
+       })
+       .catch(error => {
+         console.log(error);
+       });
    }
 
    closeModal = () => {
@@ -34,9 +47,11 @@ export default class MovieGenre extends Component {
                   </div>
                </div>
             </div>
-            <Modal show={this.state.toggleModal} movie={this.props.movie} modalClosed={this.closeModal}>
-               <MovieDetails movie={this.props.movie} />
-            </Modal>
+            {this.state.toggleModal &&
+               <Modal show={this.state.toggleModal} movie={this.state.downloadedMovie || this.props.movie} modalClosed={this.closeModal}>
+                  <MovieDetails movie={this.state.downloadedMovie || this.props.movie} isClicked={this.state.toggleModal} />
+               </Modal>
+            }
          </>
       )
    }

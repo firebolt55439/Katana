@@ -6,6 +6,7 @@ import MainContent from './MainContent';
 import Movie from '../components/Movie/Movie';
 import Modal from '../components/UI/Modal';
 import MovieDetails from '../components/Movie/MovieDetails';
+import MovieGenre from '../components/MovieGenre';
 
 import { API_KEY, API_KEY_SECONDARY } from '../store/actions/index';
 
@@ -40,11 +41,17 @@ class Layout extends Component {
             movieImageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
 
             /** Set the movie object to our Movie component */
-            const movieComponent = <Movie
+            const movieComponent2 = <Movie
               movieDetails={() => this.selectMovieHandler(movie)}
               key={movie.id}
               movieImage={movieImageUrl}
-              movie={movie} />
+              movie={movie} />;
+
+            const movieComponent = <MovieGenre
+              key={movie.id}
+              url={url}
+              posterUrl={movieImageUrl}
+              movie={movie} />;
 
             /** Push our movie component to our movieRows array */
             movieRows.push(movieComponent);
@@ -113,7 +120,7 @@ class Layout extends Component {
         <Navbar showMovies={this.onSearchHandler} />
         {
           this.state.toggleMovieList ? <MainContent /> : <div
-            className="search-container">{this.state.MovieList}</div>
+            className="container"><div className="movieShowcase"><div className="movieShowcase__container">{this.state.MovieList}</div></div></div>
         }
 
         <Modal show={this.state.toggleModal}
