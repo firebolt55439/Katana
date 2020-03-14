@@ -7,6 +7,8 @@ import { fetchRomanceMovies } from '../store/actions/index';
 
 import { API_KEY } from '../store/actions/index';
 
+import MovieRow from './MovieRow';
+
 class RomanceMovies extends Component {
 
   componentWillMount() {
@@ -23,10 +25,7 @@ class RomanceMovies extends Component {
     }
     return (
       <>
-        <h1 className="movieShowcase__heading">Romance Movies</h1>
-        <div className="movieShowcase__container">
-          {movies}
-        </div>
+        (<MovieRow heading={"Romance"} movies={movies} />);
       </>
     )
   }

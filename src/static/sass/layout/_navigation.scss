@@ -21,9 +21,9 @@
       justify-content: flex-start;
       align-items: center;
 
-            @include responsive(phone) {
-               margin-left: 1rem;
-            }
+      @include responsive(phone) {
+         margin-left: 1rem;
+      }
 
       a:first-child {
          padding-left: .2%;
@@ -257,6 +257,6 @@
    &:hover .dropdownContent {
       transition: all .4s;
       opacity: 1;
-      visibility: hidden;
+      visibility: hidden; /* disable dropdown */
    }
 }

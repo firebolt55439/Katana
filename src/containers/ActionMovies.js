@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { fetchActionMovies, API_KEY } from '../store/actions/index';
 import { getMovieRows } from '../getMovie';
 
+import MovieRow from './MovieRow';
+
 class ActionMovies extends Component {
 
   componentWillMount() {
@@ -19,14 +21,7 @@ class ActionMovies extends Component {
       const url = `/discover/movie?api_key=${API_KEY}&with_genres=28`;
       movies = getMovieRows(this.props.actionMovies.data, url);
     }
-    return (
-      <>
-        <h1 className="movieShowcase__heading">Action Movies</h1>
-        <div className="movieShowcase__container">
-          {movies}
-        </div>
-      </>
-    )
+    return (<MovieRow heading={"Action Movies"} movies={movies} />);
   }
 }
 

@@ -7,6 +7,8 @@ import { getMovieRows } from '../getMovie';
 
 import { API_KEY } from '../store/actions/index';
 
+import MovieRow from './MovieRow';
+
 class TrendingMovies extends Component {
 
   componentWillMount() {
@@ -28,14 +30,8 @@ class TrendingMovies extends Component {
     }
     return (
       <>
-        <h1 className="movieShowcase__heading">Trending Now</h1>
-        <div className="movieShowcase__container">
-          {movies}
-        </div>
-        <h1 className="movieShowcase__heading">Popular TV</h1>
-        <div className="movieShowcase__container">
-          {tv}
-        </div>
+        <MovieRow heading={"Trending Now"} movies={movies} />
+        <MovieRow heading={"Popular TV"} movies={tv} />
       </>
     );
   }

@@ -203,5 +203,57 @@
          }
       }
    }
+
+   &__flex {
+      position: relative;
+      user-select: none;
+   }
+
+   &__left-arrow,
+   &__right-arrow {
+      display: inline-block;
+      position: absolute;
+      top: 45%;
+      /* top: 10.25rem; */
+      mix-blend-mode: difference;
+      /* display: block; */
+
+      font-size: 2.5rem;
+      z-index: 100;
+      opacity: 1;
+      color: white;
+      transition: all 0.15s ease-out;
+
+      &:hover {
+         mix-blend-mode: normal;
+         transform: scale(1.2);
+      }
+
+      @include responsive(phone) {
+         visibility: hidden;
+         -webkit-visibility: hidden;
+      }
+   }
+
+   &__left-arrow {
+      left: 0%;
+   }
+
+   &__right-arrow {
+      right: 0%;
+   }
+
+   &__left-arrow-icon,
+   &__right-arrow-icon {
+      z-index: 100;
+      width: 16px;
+      cursor: pointer;
+
+      &:hover {
+         font-size: 3rem;
+         color: white;
+         transition: all 0.2s ease;
+      }
+   }
 }
 

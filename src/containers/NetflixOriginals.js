@@ -7,6 +7,8 @@ import { fetchNetflixOriginals } from '../store/actions/index';
 
 import { API_KEY } from '../store/actions/index';
 
+import MovieRow from './MovieRow';
+
 class NetflixOriginals extends Component {
 
   componentWillMount() {
@@ -21,14 +23,7 @@ class NetflixOriginals extends Component {
       const url = `/discover/tv?api_key=${API_KEY}&with_networks=213`;
       movies = getMovieRows(this.props.movies.data, url);
     }
-    return (
-      <>
-        <h1 className="movieShowcase__heading">NETFLIX ORIGINALS</h1>
-        <div className="movieShowcase__container">
-          {movies}
-        </div>
-      </>
-    )
+    return (<MovieRow heading={"NETFLIX ORIGINALS"} movies={movies} />);
   }
 }
 

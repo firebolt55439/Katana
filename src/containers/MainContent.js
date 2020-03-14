@@ -8,9 +8,7 @@ import NetflixOriginals from './NetflixOriginals';
 import TopRated from './TopRated';
 import ActionMovies from './ActionMovies';
 import ComedyMovies from './ComedyMovies';
-import HorrorMovies from './HorrorMovies';
 import RomanceMovies from './RomanceMovies';
-import Documentaries from './Documentaries';
 
 import { API_KEY } from '../store/actions/index';
 

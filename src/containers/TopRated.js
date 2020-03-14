@@ -7,6 +7,8 @@ import { getMovieRows } from '../getMovie';
 
 import { API_KEY } from '../store/actions/index';
 
+import MovieRow from './MovieRow';
+
 class TopRated extends Component {
 
   componentWillMount() {
@@ -21,14 +23,7 @@ class TopRated extends Component {
       const url = `/movie/top_rated?api_key=${API_KEY}&language=en-US`;
       movies = getMovieRows(this.props.topRated.data, url);
     }
-    return (
-      <>
-        <h1 className="movieShowcase__heading">Top Rated</h1>
-        <div className="movieShowcase__container">
-          {movies}
-        </div>
-      </>
-    )
+    return (<MovieRow heading={"Top Rated Movies"} movies={movies} />);
   }
 }
 

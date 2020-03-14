@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { getMovieRows } from '../getMovie';
 import { fetchComedyMovies, API_KEY } from '../store/actions/index';
 
+import MovieRow from './MovieRow';
+
 class ComedyMovies extends Component {
 
   componentWillMount() {
@@ -19,14 +21,7 @@ class ComedyMovies extends Component {
       const url = `/discover/tv?api_key=${API_KEY}&with_genres=35`;
       movies = getMovieRows(this.props.movies.data, url);
     }
-    return (
-      <>
-        <h1 className="movieShowcase__heading">Comedies</h1>
-        <div className="movieShowcase__container">
-          {movies}
-        </div>
-      </>
-    )
+    return (<MovieRow heading={"Comedy Movies"} movies={movies} />);
   }
 }
 

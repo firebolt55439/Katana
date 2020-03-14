@@ -35,7 +35,7 @@ export default class Header extends Component {
   render() {
     const backgroundStyle = {
       backgroundSize: "cover",
-      backgroundImage: `url(https://image.tmdb.org/t/p/original/${this.props.movie.backdrop_path})`,
+      backgroundImage: (this.props.movie.backdrop_path ? `url(https://image.tmdb.org/t/p/original/${this.props.movie.backdrop_path})` : ``),
       backgroundPosition: "center",
     };
 

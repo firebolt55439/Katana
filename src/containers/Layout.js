@@ -28,13 +28,15 @@ class Layout extends Component {
   }
 
   goToHome() {
-    if (!this.state.toggleMovieList) {
+    if (this.state.toggleModal) {
+      this.setState({toggleModal: false});
+    } else if (!this.state.toggleMovieList) {
       this.setState({toggleMovieList: true});
     }
   }
 
   escFunction(event){
-    if (event.keyCode === 27 && !this.state.toggleMovieList) {
+    if (event.keyCode === 27) {
       this.goToHome();
     }
   }
