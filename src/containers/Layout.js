@@ -23,13 +23,19 @@ class Layout extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super(props);
     this.escFunction = this.escFunction.bind(this);
+  }
+
+  goToHome() {
+    if (!this.state.toggleMovieList) {
+      this.setState({toggleMovieList: true});
+    }
   }
 
   escFunction(event){
     if (event.keyCode === 27 && !this.state.toggleMovieList) {
-      this.setState({toggleMovieList: true});
+      this.goToHome();
     }
   }
 
@@ -126,9 +132,14 @@ class Layout extends Component {
 
   render() {
 
+    let handlers = {
+      showMovies: this.onSearchHandler,
+      onHome: this.goToHome
+    }
+
     return (
       <div>
-        <Navbar showMovies={this.onSearchHandler} />
+        <Navbar handlers={handlers} />
         {
           this.state.toggleMovieList ? <MainContent /> : <div
             className="search-container">{this.state.MovieList}</div>

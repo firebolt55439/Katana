@@ -9,12 +9,13 @@
    opacity: 0;
    box-shadow: 0 1.5rem 4rem rgba($color-dark, .15);
 
-   @include responsive(tab_port) {
-      height: 38rem;
+   /* @include responsive(tab_port) {
+      height: 60rem;
+   } */
+
+   @include responsive(phone) {
+      height: 58rem;
    }
-    @include responsive(phone) {
-       height: 50rem;
-    }
 
 
    &__container {

@@ -44,7 +44,7 @@
          transform: translate3d(-7rem, 0, 0);
 
          @include responsive(tab_port) {
-            transform: translate3d(-5rem, 0, 0);
+            transform: translate3d(-5.75rem, 0, 0);
          }
 
          @include responsive(phone) {
@@ -56,11 +56,11 @@
           transform: translate3d(7rem, 0, 0);
 
          @include responsive(tab_port) {
-            transform: translate3d(4.5rem, 0, 0);
+            transform: translate3d(5.75rem, 0, 0);
          }
 
          @include responsive(phone) {
-            transform: translate3d(2.8rem, 0, 0);
+            transform: translate3d(3rem, 0, 0);
          }
       }
 
@@ -92,11 +92,11 @@
          min-height: 0;
 
          @include responsive(tab_port) {
-            height: 18.5rem;
+            height: 20.5rem;
          }
 
          @include responsive(phone) {
-            height: 14rem;
+            height: 17.5rem;
          }
 
          &-image {

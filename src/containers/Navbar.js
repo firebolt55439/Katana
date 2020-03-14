@@ -34,18 +34,17 @@ class navigation extends Component {
 
   render() {
     const { scrolling } = this.state;
-    const { showMovies } = this.props;
+    const { showMovies } = this.props.handlers;
 
     return (
       <nav className={"navigation " + (scrolling ? "black" : "")} >
         <ul className="navigation__container">
           <NavigationItem link="/" exact><img className="navigation__container--logo" src={KatanaLogo} alt="" /></NavigationItem>
-          <DropdownArrow className="navigation__container--downArrow-2"></DropdownArrow>
-          <div className="navigation__container-link pseudo-link">Home</div>
-          <div className="navigation__container-link pseudo-link">TV Shows</div>
-          <div className="navigation__container-link pseudo-link">Movies</div>
-          <div className="navigation__container-link pseudo-link">Recently Added</div>
-          <div className="navigation__container-link pseudo-link">My List</div>
+          {/*<div className="navigation__container-link nav-link">Home</div>
+          <div className="navigation__container-link nav-link">TV Shows</div>
+          <div className="navigation__container-link nav-link">Movies</div>
+          <div className="navigation__container-link nav-link">Recently Added</div>
+          <div className="navigation__container-link nav-link">My List</div>*/}
 
 
           <div className="navigation__container--left">
@@ -55,12 +54,10 @@ class navigation extends Component {
               onChange={showMovies}
               className="navigation__container--left__input"
               type="text"
-              placeholder="Title, genres, people" />
+              placeholder="Movies, television, and more" />
 
           </div>
 
-          <div className="navigation__container-link pseudo-link">KIDS</div>
-          <div className="navigation__container-link pseudo-link">DVD</div>
           <BellLogo className="navigation__container--bellLogo" />
 
           <DropdownContent />

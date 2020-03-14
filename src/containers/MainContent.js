@@ -30,8 +30,8 @@ class MainContent extends Component {
     Array.prototype.random = function () {
       return this[Math.floor((Math.random()*this.length))];
     };
-    /** Movie Id for the Narcos series  */
-    const movieId = 63351;
+    /** ID for Star Trek: Picard  */
+    const movieId = 85949;
     /** Make Api call to retrieve the details for a single movie  */
     const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US`;
     // const url = `https://api.themoviedb.org/3/tv/${movieId}?api_key=${API_KEY}`;
@@ -57,7 +57,7 @@ class MainContent extends Component {
           <ActionMovies />
           <ComedyMovies />
           {/* <HorrorMovies /> */}
-          <Documentaries />
+          {/*<Documentaries />*/}
         </div>
         <Footer />
       </div>
