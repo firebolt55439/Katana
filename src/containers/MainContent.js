@@ -9,15 +9,50 @@ import TopRated from './TopRated';
 import ActionMovies from './ActionMovies';
 import ComedyMovies from './ComedyMovies';
 import RomanceMovies from './RomanceMovies';
+import GenericMovieRow from './GenericMovieRow';
 
 import { API_KEY } from '../store/actions/index';
+
+import GENRE_IDS from './genres.json';
+
+/**
+ * Shuffles array in place. ES6 version
+ * @source https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
 
 class MainContent extends Component {
 
   state = {
     /** Will hold our chosen movie to display on the header */
-    selectedMovie: {}
+    selectedMovie: {},
+    selectedGenres: {}
   };
+
+  componentWillMount = () => {
+    var tvArr = GENRE_IDS["tv"], movieArr = GENRE_IDS["movie"];
+    shuffle(tvArr);
+    shuffle(movieArr);
+
+    const arr = [tvArr, movieArr];
+    var genreNodes = [];
+    for (var i = 0; i < 2; i++) {
+      const on = arr[i];
+      for (var j = 0; j < 3; j++) {
+        genreNodes.push(<GenericMovieRow key={on[j]["id"]} type={i == 1 ? "movie" : "tv"} heading={on[j]["name"]} genre={on[j]["id"]} />);
+      }
+    }
+    shuffle(genreNodes);
+
+    this.state.selectedGenres = genreNodes;
+  }
 
   componentDidMount = () => {
     this.getMovie();
@@ -52,10 +87,11 @@ class MainContent extends Component {
           <NetflixOriginals />
           <TrendingMovies />
           <TopRated />
-          <ActionMovies />
-          <ComedyMovies />
+          {/*<ActionMovies />*/}
+          {/*<ComedyMovies />*/}
           {/* <HorrorMovies /> */}
           {/*<Documentaries />*/}
+          {this.state.selectedGenres}
         </div>
         <Footer />
       </div>

@@ -8,17 +8,6 @@ import HorrorMoviesReducer from './reducerHorrorMovies';
 import RomanceMoviesReducer from './reducerRomanceMovies';
 import DocumentaryReducer from './reducerDocumentary';
 
-function defaultReducer(state = {}, action) {
-  switch (action.type) {
-    default:
-      if ("payload" in action && "data" in action.payload && "results" in action.payload.data) {
-      	const data = action.payload.data.results;
-      	return { ...state, data };
-      }
-      return state;
-  }
-}
-
 const rootReducer = combineReducers({
   trending: TrendingReducer,
   popularTv: NetflixOriginalsReducer,

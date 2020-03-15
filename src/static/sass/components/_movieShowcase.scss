@@ -219,7 +219,7 @@
       /* display: block; */
 
       font-size: 2.5rem;
-      z-index: 100;
+      z-index: 10;
       opacity: 1;
       color: white;
       transition: all 0.15s ease-out;
@@ -245,7 +245,7 @@
 
    &__left-arrow-icon,
    &__right-arrow-icon {
-      z-index: 100;
+      z-index: 10;
       width: 16px;
       cursor: pointer;
 
@@ -257,3 +257,27 @@
    }
 }
 
+.animated {
+   animation: shake 0.62s cubic-bezier(.36,.07,.19,.97) both;
+   transform: translate3d(0, 0, 0);
+   backface-visibility: hidden;
+   perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(0px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 60% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  45% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
