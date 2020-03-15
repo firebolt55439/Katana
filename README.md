@@ -12,10 +12,10 @@ Note that this project is under heavy development, with all interfaces subject t
 ![](https://github.com/firebolt55439/katana/blob/master/demo/full_header.jpg)
 
 ## Tooling Used
-React.js
-Webpack
-Babel
-Axios
+- React.js
+- Webpack
+- Babel
+- Axios
 
 ## Credits
 This project originated as a fork of [AndresXI's fantastic project"](https://github.com/AndresXI/Netflix-Clone).
