@@ -6,6 +6,11 @@ In other words, no matter where your movies are hosted (Google Drive, P2P stream
 
 Note that this project is under heavy development, with all interfaces subject to change at any time.
 
+## Current Visual State
+![](https://github.com/firebolt55439/katana/blob/master/demo/narrow_home.png)
+![](https://github.com/firebolt55439/katana/blob/master/demo/middle_browse.png)
+![](https://github.com/firebolt55439/katana/blob/master/demo/full_header.png)
+
 ## Tooling Used
 React.js
 Webpack
@@ -13,6 +18,6 @@ Babel
 Axios
 
 ## Credits
-This project originated as a fork of ![AndresXI's fantastic "Netflix Clone" project"](https://github.com/AndresXI/Netflix-Clone).
+This project originated as a fork of [AndresXI's fantastic project"](https://github.com/AndresXI/Netflix-Clone).
 
 TheMovieDB's rock-solid API for, even beside their ridiculously comprehensive database, developer-friendly API design, and great CDN's, their CORS support (a highly underrated feature in my opinion!).
