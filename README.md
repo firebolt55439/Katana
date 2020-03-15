@@ -6,6 +6,14 @@ More specifically, no matter where your movies are hosted (Google Drive, P2P str
 
 Note that this project is under heavy development, with all interfaces subject to change at any time.
 
+## Building & Running
+
+To build: `npm run build`
+
+To start: `npm run start`
+
+Live-reloading is automatically enabled (can be changed in webpack config). React developer tools for Chrome come highly recommended.
+
 ## Current Visual State
 ![](https://github.com/firebolt55439/katana/blob/master/demo/narrow_home.jpg)
 ![](https://github.com/firebolt55439/katana/blob/master/demo/middle_browse.jpg)
@@ -20,4 +28,4 @@ Note that this project is under heavy development, with all interfaces subject t
 ## Credits
 This project originated as a fork of [AndresXI's fantastic project"](https://github.com/AndresXI/Netflix-Clone).
 
-TheMovieDB's rock-solid API for, even beside their ridiculously comprehensive database, developer-friendly API design, and great CDN's, their CORS support (a highly underrated feature in my opinion!).
+Thanks to TheMovieDB's rock-solid API for, even beside their ridiculously comprehensive database, developer-friendly API design, and great CDN's, their CORS support (a highly underrated feature in my opinion!).
