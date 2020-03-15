@@ -26,6 +26,6 @@ Live-reloading is automatically enabled (can be changed in webpack config). Reac
 - Axios
 
 ## Credits
-This project originated as a fork of [AndresXI's fantastic project"](https://github.com/AndresXI/Netflix-Clone).
+This project originated as a fork of [AndresXI's fantastic project](https://github.com/AndresXI/Netflix-Clone).
 
 Thanks to TheMovieDB's rock-solid API for, even beside their ridiculously comprehensive database, developer-friendly API design, and great CDN's, their CORS support (a highly underrated feature in my opinion!).
