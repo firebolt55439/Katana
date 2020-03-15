@@ -1,8 +1,8 @@
 # Katana
 
-This project is a sleek and elegant front-end that emulates Netflix's style. The goal of this project is to provide a backend-agnostic front-end for movie and TV show discovery and streaming.
+This project is a sleek and elegant front-end that emulates Netflix's style. The goal of this project is to provide a backend-agnostic front-end for movie & TV discovery & streaming.
 
-In other words, no matter where your movies are hosted (Google Drive, P2P stream, satellite, etc.) so long as your backend follows the API conventions herein laid out, you can simply plug-and-play this front-end into your service.
+More specifically, no matter where your movies are hosted (Google Drive, P2P stream, satellite, etc.) so long as your backend follows the API conventions herein laid out, you can simply plug-and-play this front-end into your service.
 
 Note that this project is under heavy development, with all interfaces subject to change at any time.
 
