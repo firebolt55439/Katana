@@ -7,9 +7,9 @@ More specifically, no matter where your movies are hosted (Google Drive, P2P str
 Note that this project is under heavy development, with all interfaces subject to change at any time.
 
 ## Current Visual State
-![](https://github.com/firebolt55439/katana/blob/master/demo/narrow_home.png)
-![](https://github.com/firebolt55439/katana/blob/master/demo/middle_browse.png)
-![](https://github.com/firebolt55439/katana/blob/master/demo/full_header.png)
+![](https://github.com/firebolt55439/katana/blob/master/demo/narrow_home.jpg)
+![](https://github.com/firebolt55439/katana/blob/master/demo/middle_browse.jpg)
+![](https://github.com/firebolt55439/katana/blob/master/demo/full_header.jpg)
 
 ## Tooling Used
 React.js
