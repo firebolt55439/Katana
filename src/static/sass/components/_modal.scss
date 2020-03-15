@@ -58,6 +58,7 @@
    &__tagline {
       color: $color-modal-grey;
       font-size: 1.9rem;
+      padding-bottom: 0.4rem;
    }
 
    &__rating {
@@ -67,7 +68,7 @@
    }
 
    &__info {
-      padding-top: 0.8rem;
+      padding-top: 0.5rem;
       font-size: 2rem;
 
       @include responsive(phone) {
@@ -85,8 +86,15 @@
       padding-top: 2rem;
       font-size: 2rem;
       hyphens: auto;
+      max-width: 40vw;
       width: 60%;
       line-height: 1.2;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @include responsive(lg_desktop) {
          width: 60%;

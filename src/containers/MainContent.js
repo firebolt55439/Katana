@@ -6,9 +6,6 @@ import Footer from '../components/Footer';
 import TrendingMovies from './TrendingMovies';
 import NetflixOriginals from './NetflixOriginals';
 import TopRated from './TopRated';
-import ActionMovies from './ActionMovies';
-import ComedyMovies from './ComedyMovies';
-import RomanceMovies from './RomanceMovies';
 import GenericMovieRow from './GenericMovieRow';
 
 import { API_KEY } from '../store/actions/index';
@@ -46,7 +43,7 @@ class MainContent extends Component {
     for (var i = 0; i < 2; i++) {
       const on = arr[i];
       for (var j = 0; j < 3; j++) {
-        genreNodes.push(<GenericMovieRow key={on[j]["id"]} type={i == 1 ? "movie" : "tv"} heading={on[j]["name"]} genre={on[j]["id"]} />);
+        genreNodes.push(<GenericMovieRow key={Math.random().toString() + on[j]["id"]} type={i == 1 ? "movie" : "tv"} heading={on[j]["name"]} genre={on[j]["id"]} />);
       }
     }
     shuffle(genreNodes);

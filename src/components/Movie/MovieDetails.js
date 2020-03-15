@@ -6,7 +6,7 @@ import PlayIcon from '../../static/images/play-button.svg';
 
 export default class MovieDetails extends Component {
   render() {
-    if (this.props.isClicked) {
+    if (this.props.movie.spoken_languages || this.props.movie.runtime) {
       console.log(this.props.movie);
     }
     let date;
@@ -42,9 +42,9 @@ export default class MovieDetails extends Component {
           <h1 className="modal__title">
             {this.props.movie.title || this.props.movie.name}
           </h1>
-          <p className="modal__tagline">{this.props.movie.tagline}</p>
+          {this.props.movie.tagline ? (<p className="modal__tagline">{this.props.movie.tagline}</p>) : (<></>)}
           <p className="modal__info">
-            {info.join(" | ")}
+            {info.join("\u00A0\u00A0|\u00A0\u00A0")}
           </p>
           <p className="modal__overview">{this.props.movie.overview}</p>
           <button className="modal__btn modal__btn--red">
