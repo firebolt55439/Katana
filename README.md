@@ -1,29 +1,18 @@
-# Netflix Clone
+# Katana
 
-- Demo: http://netflix-react-clone.surge.sh/
+This project is a sleek and elegant front-end that emulates Netflix's style. The goal of this project is to provide a backend-agnostic front-end for movie and TV show discovery and streaming.
 
-This project is a simplified front end clone of Netflix. It was created with React and CSS (Grid and Flexbox). It uses [The MovieDB Api](https://www.themoviedb.org/documentation/api) to search for movies and display details. Feel free to contribute!
+In other words, no matter where your movies are hosted (Google Drive, P2P stream, satellite, etc.) so long as your backend follows the API conventions herein laid out, you can simply plug-and-play this front-end into your service.
 
-### Tools used:
-- Webpack
-- Axios
-- Redux & React
-- Sass (grid & flexbox)
-- Media queries
+Note that this project is under heavy development, with all interfaces subject to change at any time.
 
+## Tooling Used
+React.js
+Webpack
+Babel
+Axios
 
-### User Stories: 
+## Credits
+This project originated as a fork of ![AndresXI's fantastic "Netflix Clone" project"](https://github.com/AndresXI/Netflix-Clone).
 
-- User can search for movies and TV shows on TMDb
-- User can the see upcoming and trending movies. Data updates weekly 
-- User can click on a movie and a modal should pop up. It should display the title, release date, overview, and runtime.  
-- The webpage adapts to any screen size. 
-
-
-
-### Video Walktrough 
-![](https://github.com/AndresXI/Netflix-Clone/blob/master/netflix-demo.gif?raw=true)
-
-
-
-Please feel free to create a pull request and submit any issues!
+TheMovieDB's rock-solid API for, even beside their ridiculously comprehensive database, developer-friendly API design, and great CDN's, their CORS support (a highly underrated feature in my opinion!).

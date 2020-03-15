@@ -1,5 +1,7 @@
 import axios from '../../axios-movies';
 
+import { TMDB_API_KEY, TMDB_API_KEY_SECONDARY} from './keys';
+
 export const FETCH_TRENDING = 'FETCH_TRENDING';
 export const FETCH_NETFLIX_ORIGINALS = 'FETCH_NETFLIX_ORIGINALS';
 export const FETCH_TOP_RATED = 'FETCH_TOP_RATED';
@@ -10,8 +12,8 @@ export const FETCH_HORROR_MOVIES = 'FETCH_HORROR_MOVIES';
 export const FETCH_ROMANCE_MOVIES = 'FETCH_ROMANCE_MOVIES';
 export const FETCH_DOCUMENTARIES = 'FETCH_DOCUMENTARIES';
 
-export const API_KEY = '224ce27b38a3805ecf6f6c36eb3ba9d0';
-export const API_KEY_SECONDARY = '9ea839ec7891591994ec0f540b4b199f';
+export const API_KEY = TMDB_API_KEY;
+export const API_KEY_SECONDARY = TMDB_API_KEY_SECONDARY;
 
 export function fetchTrending() {
   const request = axios.get(`/trending/all/week?api_key=${API_KEY}&language=en-US`);
