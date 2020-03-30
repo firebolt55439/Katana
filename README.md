@@ -13,6 +13,12 @@ Note that this project is under heavy development, with all interfaces subject t
 - React best-practices are used (mostly)
 - Everything runs client-side, only API being called to is TMDB
 
+## In The Works
+- Stable back-end API specification
+- Example back-end framework in Python
+- Source retrieval and rendering from back-end
+- Chromecast and Airplay support
+
 ## Building & Running
 
 To build: `npm run build`
