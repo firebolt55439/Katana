@@ -15,3 +15,5 @@ npm-debug.log*
 TODO.md
 
 .DS_Store
+
+backend/sources/*
