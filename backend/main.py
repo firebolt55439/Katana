@@ -18,20 +18,24 @@ for (module_index, file) in enumerate(os.listdir(SOURCES_DIRECTORY)):
 		spec = importlib.util.spec_from_file_location(f"dynamic_source_{module_index}", path)
 		module_object = importlib.util.module_from_spec(spec)
 		spec.loader.exec_module(module_object)
-		print(foo.MainSource)
-		main_source = foo.MainSource
+		main_source = module_object.MainSource()
 		sources.append(main_source)
 
 ##
 # Global Object Definitions:
-# [ItemParameters Object]: {
+# [QueryItem Object]: {
+# 	"imdb_id" => IMDb ID
+# 	"title" => Title
+# 	"category" => "tv" or "movie"
+# 	"season" => season number, if applicable
+# 	"episode" => episode number, if applicable
 # }
 ##
 
 ##
 # API Endpoint: /subtitles
 # Method: GET
-# Parameters: ItemParameters Object
+# Parameters: QueryItem Object
 # Return Type: List of Subtitle Objects
 # [Subtitle Object]: {
 # 	"source" => Source of subtitle (e.g. OpenSubtitles)
@@ -45,7 +49,7 @@ def subtitles():
 ##
 # API Endpoint: /sources/available
 # Method: GET
-# Parameters: ItemParameters Object
+# Parameters: QueryItem Object
 # Return Type: List of SourceID's (generic types)
 ##
 @app.route('/sources/available', methods=['GET'])
@@ -56,7 +60,7 @@ def available_sources():
 # API Endpoint: /sources/individual
 # Method: GET
 # Parameters: {
-# 	"item": ItemParameters Object
+# 	"item": QueryItem Object
 # 	"source": source ID, returned from /sources/available
 # }
 # Return Type: List of Source Objects

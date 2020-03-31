@@ -17,3 +17,7 @@ TODO.md
 .DS_Store
 
 backend/sources/*
+
+__pycache__/
+*.py[cod]
+

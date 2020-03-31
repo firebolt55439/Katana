@@ -1,4 +1,15 @@
 ##
+# Class that represents a query item.
+##
+class QueryItem(object):
+	def __init__(self, imdb_id: str, title: str, category: str, season: str, episode: str):
+		self.imdb_id = imdb_id
+		self.title = title
+		self.category = category
+		self.season = season
+		self.episode = episode
+
+##
 # Abstract class for a source.
 ##
 from abc import ABC, abstractmethod
@@ -10,7 +21,11 @@ class Source(ABC):
 		return "<none>"
 
 	@abstractmethod
-	def search(self, **kwargs) -> list:
+	def can_handle(self, item: QueryItem) -> bool:
+		return False
+
+	@abstractmethod
+	def search(self, item: QueryItem) -> list:
 		return []
 
 ##
