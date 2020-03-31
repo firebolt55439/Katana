@@ -1,5 +1,6 @@
 import flask
 from flask import request, jsonify
+from source import QueryItem
 
 APP_NAME = "Katana Backend"
 SOURCES_DIRECTORY = "sources/"
@@ -25,8 +26,8 @@ for (module_index, file) in enumerate(os.listdir(SOURCES_DIRECTORY)):
 # Global Object Definitions:
 # [QueryItem Object]: {
 # 	"imdb_id" => IMDb ID
-# 	"title" => Title
 # 	"category" => "tv" or "movie"
+# 	"title" => title (can be empty)
 # 	"season" => season number, if applicable
 # 	"episode" => episode number, if applicable
 # }
@@ -44,7 +45,7 @@ for (module_index, file) in enumerate(os.listdir(SOURCES_DIRECTORY)):
 ##
 @app.route('/subtitles', methods=['GET'])
 def subtitles():
-    return jsonify(books)
+    return jsonify([])
 
 ##
 # API Endpoint: /sources/available
@@ -54,18 +55,22 @@ def subtitles():
 ##
 @app.route('/sources/available', methods=['GET'])
 def available_sources():
-    return jsonify(books)
+	item = QueryItem.from_args(request.args)
+	avail = []
+	for (idx, source) in enumerate(sources):
+		if source.can_handle(item):
+			avail.append(idx)
+	return jsonify(avail)
 
 ##
 # API Endpoint: /sources/individual
 # Method: GET
-# Parameters: {
-# 	"item": QueryItem Object
+# Parameters: QueryItem Object, augmented with an additiona field: {
 # 	"source": source ID, returned from /sources/available
 # }
 # Return Type: List of Source Objects
 # [Source Object]: {
-# 	"title" => title of item
+# 	"title" => item title (e.g. a filename)
 # 	"source" => source name (e.g. Hulu)
 # 	"quality" => quality description (e.g. SD, 720p, 4K)
 # 	"embed" => embedded video player link, if applicable
@@ -74,6 +79,10 @@ def available_sources():
 ##
 @app.route('/sources/individual', methods=['GET'])
 def individual_source():
-    return jsonify(books)
+	item = QueryItem.from_args(request.args)
+	source_id = int(request.args["source"])
+	found_sources = sources[source_id].search(item)
+	serialized_sources = [source.__dict__ for source in found_sources]
+	return jsonify(serialized_sources)
 
 app.run()

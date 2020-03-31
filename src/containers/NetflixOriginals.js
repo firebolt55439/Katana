@@ -23,7 +23,7 @@ class NetflixOriginals extends Component {
       const url = `/discover/tv?api_key=${API_KEY}&with_networks=213`;
       movies = getMovieRows(this.props.movies.data, url);
     }
-    return (<MovieRow heading={"NETFLIX ORIGINALS"} movies={movies} />);
+    return (<MovieRow heading={"Netflix Originals"} movies={movies} />);
   }
 }
 

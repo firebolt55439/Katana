@@ -4,6 +4,8 @@ import Aux from '../../hoc/Aux';
 import AddIcon from '../../static/images/add.svg';
 import PlayIcon from '../../static/images/play-button.svg';
 
+import MovieSources from './MovieSources';
+
 export default class MovieDetails extends Component {
   render() {
     if (this.props.movie.spoken_languages || this.props.movie.runtime) {
@@ -55,6 +57,7 @@ export default class MovieDetails extends Component {
             <AddIcon className="modal__btn--icon" />
             My List
           </button>
+          <MovieSources props={this.props.movie} />
         </div>
       </Aux>
     );
