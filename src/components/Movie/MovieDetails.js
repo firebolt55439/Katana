@@ -7,6 +7,20 @@ import PlayIcon from '../../static/images/play-button.svg';
 import MovieSources from './MovieSources';
 
 export default class MovieDetails extends Component {
+  state = {
+    playButtonClicked: false
+  }
+  constructor(props) {
+    super(props);
+  }
+
+  playClicked = (e) => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    e.target.blur();
+    this.setState({playButtonClicked: true});
+  }
+
   render() {
     if (this.props.movie.spoken_languages || this.props.movie.runtime) {
       console.log(this.props.movie);
@@ -48,16 +62,21 @@ export default class MovieDetails extends Component {
           <p className="modal__info">
             {info.join("\u00A0\u00A0|\u00A0\u00A0")}
           </p>
-          <p className="modal__overview">{this.props.movie.overview}</p>
-          <button className="modal__btn modal__btn--red">
-            <PlayIcon className="modal__btn--icon" />
-            Play
-          </button>
-          <button className="modal__btn">
-            <AddIcon className="modal__btn--icon" />
-            My List
-          </button>
-          <MovieSources props={this.props.movie} />
+          {this.state.playButtonClicked ? (
+            <MovieSources movie={this.props.movie} />
+          ) : (
+            <>
+              <p className="modal__overview">{this.props.movie.overview}</p>
+              <button className="modal__btn modal__btn--red" onClick={this.playClicked}>
+                <PlayIcon className="modal__btn--icon" />
+                Play
+              </button>
+              <button className="modal__btn">
+                <AddIcon className="modal__btn--icon" />
+                My List
+              </button>
+            </>
+          )}
         </div>
       </Aux>
     );
