@@ -1,5 +1,6 @@
 import flask
 from flask import request, jsonify
+from flask_cors import CORS
 from source import QueryItem
 
 APP_NAME = "Katana Backend"
@@ -8,6 +9,7 @@ DEBUG_ENABLED = True
 
 app = flask.Flask(APP_NAME)
 app.config["DEBUG"] = DEBUG_ENABLED
+CORS(app)
 
 # Import all sources
 import os

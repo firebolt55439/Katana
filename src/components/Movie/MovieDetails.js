@@ -15,16 +15,18 @@ export default class MovieDetails extends Component {
   }
 
   playClicked = (e) => {
-    // e.preventDefault();
-    // e.stopPropagation();
     e.target.blur();
-    this.setState({playButtonClicked: true});
+    this.setState({
+      playButtonClicked: true
+    });
   }
 
   render() {
-    if (this.props.movie.spoken_languages || this.props.movie.runtime) {
+    /*if (this.props.movie.spoken_languages || this.props.movie.runtime) {
       console.log(this.props.movie);
-    }
+    }*/
+
+    /* Generate date string */
     let date;
     const raw_date = this.props.movie.release_date || this.props.movie.last_air_date;
     if (raw_date !== undefined) {
@@ -34,8 +36,12 @@ export default class MovieDetails extends Component {
       // date = `${mo} ${da}, ${ye}`;
       date = ye;
     }
+
+    /* Generate runtime description */
     const runtime = this.props.movie.runtime || (Array.isArray(this.props.movie.episode_run_time) ? this.props.movie.episode_run_time[0] : this.props.movie.episode_run_time);
     const runtime_str = (runtime < 60 ? (runtime.toString() + "m") : (Math.floor(runtime / 60).toString() + "h " + (runtime % 60) + "m"));
+
+    /* Generate info fields */
     let info = [date, runtime_str];
     if (this.props.movie.number_of_seasons) {
       info.push(this.props.movie.number_of_seasons.toString() + " season" + (this.props.movie.number_of_seasons == 1 ? "" : "s"));
@@ -52,6 +58,8 @@ export default class MovieDetails extends Component {
       }
       info.push(elem.name);
     }
+
+    /* Return JSX */
     return (
       <Aux>
         <div className="modal__container">

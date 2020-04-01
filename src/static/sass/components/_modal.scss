@@ -173,7 +173,7 @@
                /* */
             }
             &--title {
-               width: 20px;
+               /* width: 20px; */
                white-space: nowrap;
                overflow: hidden;
                text-overflow: ellipsis;
@@ -184,6 +184,7 @@
 }
 
 .tbl-header {
+   margin-top: 30px;
    background-color: rgba(255,255,255,0.3);
 }
 .tbl-content {
@@ -273,7 +274,6 @@
 .source-loader {
   position: relative;
   width: 50px;
-  padding-bottom: 30px;
   /* margin: 100px auto; */
 }
 

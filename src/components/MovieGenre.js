@@ -13,12 +13,13 @@ export default class MovieGenre extends Component {
    }
 
    handleToggleModal = () => {
-     const url = "first_air_date" in this.props.movie ? `https://api.themoviedb.org/3/tv/${this.props.movie.id}?api_key=${API_KEY}&language=en-US`
+     const url = "first_air_date" in this.props.movie ? `https://api.themoviedb.org/3/tv/${this.props.movie.id}?api_key=${API_KEY}&append_to_response=external_ids&language=en-US`
                                                       : `https://api.themoviedb.org/3/movie/${this.props.movie.id}?api_key=${API_KEY}&language=en-US`;
      axios
        .get(url)
        .then(res => {
-         this.setState({ toggleModal: true, downloadedMovie: res.data });
+        // console.log("Downloaded movie", res.data);
+        this.setState({ toggleModal: true, downloadedMovie: res.data });
        })
        .catch(error => {
          console.log(error);
