@@ -1,3 +1,5 @@
+@import '~@sweetalert2/theme-borderless/borderless.scss';
+
 .modal {
    position: fixed;
    z-index: 500;
@@ -160,14 +162,34 @@
          font-size: 2.7rem;
       }
 
+      &--play_btn {
+         background-color: $color-red-2;
+         margin-top: 0;
+         margin-right: 0;
+         border: none;
+         border-radius: 7px;
+         padding: 1.2rem 2rem 1.2rem 2rem;
+      }
+
       &--loading {
          padding-top: 1.5rem;
          /* font-size: 1.6rem; */
       }
 
+      &--pull {
+         margin-top: -15px;
+      }
+
       &--list {
-         font-size: 1.0em;
-         font-style: normal;
+         margin-top: 30px;
+         margin-left: -4px;
+         width: 80%;
+         border-radius: 15px;
+         overflow: hidden;
+         background-clip: padding-box;
+         -moz-background-clip: padding;
+         -webkit-background-clip: padding;
+         background: linear-gradient(to right, rgba(#25c481, 0.45), rgba(#25b7c4, 0.45));
          &__source {
             &--name {
                /* */
@@ -184,7 +206,6 @@
 }
 
 .tbl-header {
-   margin-top: 30px;
    background-color: rgba(255,255,255,0.3);
 }
 .tbl-content {
@@ -201,7 +222,7 @@
    padding: 15px 15px;
    text-align: left;
    font-weight: 500;
-   font-size: 12px;
+   font-size: 1.9rem;
    color: #fff;
    text-transform: uppercase;
 }
@@ -210,7 +231,7 @@
    text-align: left;
    vertical-align:middle;
    font-weight: 300;
-   font-size: 12px;
+   font-size: 1.6rem;
    color: #fff;
    border-bottom: solid 1px rgba(255,255,255,0.1);
 }
@@ -352,4 +373,8 @@
   opacity: 0;
   animation-name: onOff;
   animation-direction: reverse;
+}
+
+.swal-bigger {
+   font-size: 2rem;
 }

@@ -5,7 +5,7 @@ from source import QueryItem
 
 APP_NAME = "Katana Backend"
 SOURCES_DIRECTORY = "sources/"
-DEBUG_ENABLED = True
+DEBUG_ENABLED = False
 
 app = flask.Flask(APP_NAME)
 app.config["DEBUG"] = DEBUG_ENABLED
@@ -27,7 +27,7 @@ for (module_index, file) in enumerate(os.listdir(SOURCES_DIRECTORY)):
 ##
 # Global Object Definitions:
 # [QueryItem Object]: {
-# 	"imdb_id" => IMDb ID
+# 	"imdb_id" => IMDb ID or "<none>"
 # 	"category" => "tv" or "movie"
 # 	"title" => title (can be empty)
 # 	"season" => season number, if applicable
@@ -87,4 +87,4 @@ def individual_source():
 	serialized_sources = [source.__dict__ for source in found_sources]
 	return jsonify(serialized_sources)
 
-app.run()
+app.run(threaded=True)

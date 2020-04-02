@@ -14,6 +14,8 @@
   "author": "Andres Alcocer",
   "license": "ISC",
   "dependencies": {
+    "@sweetalert2/theme-borderless": "^3.1.4",
+    "@sweetalert2/theme-material-ui": "^3.1.4",
     "axios": "^0.18.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
@@ -22,7 +24,8 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-promise": "^0.6.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sweetalert2": "^9.10.8"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",

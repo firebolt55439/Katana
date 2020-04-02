@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2/src/sweetalert2.js';
+
+import PlayIcon from '../../static/images/play-button.svg';
 
 const BACKEND_URL = "http://127.0.0.1:5000";
 const CancelToken = axios.CancelToken;
@@ -15,6 +18,7 @@ export default class MovieSources extends Component {
     super(props);
     this.numSources = 0;
     this.numSourcesRetrieved = -1;
+    this.params = null;
   }
 
   markSourceRetrieved() {
@@ -31,19 +35,51 @@ export default class MovieSources extends Component {
     console.log("Marked source retrieved (%d out of %d)", this.numSourcesRetrieved, this.numSources);
   }
 
-  componentDidMount() {
-    console.log(this.props.movie);
-    var params = {
-      imdb_id: this.props.movie.imdb_id || this.props.movie.external_ids.imdb_id,
-      title: this.props.movie.title || this.props.movie.name,
-      category: this.props.movie.number_of_seasons ? "tv" : "movie",
-      season: null,
-      episode: null
-    };
-    if (params.category === "tv") {
-      // TODO: allow season / episode selection (swal? have button to select, upon click fill in season / ep?)
-      params.season = "1";
-      params.episode = "1";
+  promptForEpisodeDetails() {
+    var params = this.params;
+    var thisRef = this;
+    Swal.mixin({
+      input: 'number',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      progressSteps: ['1', '2'],
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      customClass: 'swal-bigger'
+    }).queue([
+      {
+        title: 'Season #',
+        text: 'Enter the season number:'
+      },
+      {
+        title: 'Episode #',
+        text: 'Enter the episode number:'
+      }
+    ]).then((result) => {
+      if (result.value) {
+        params.season = result.value[0];
+        params.episode = result.value[1];
+        thisRef.setState({loading: true});
+        thisRef.startFetchingSources();
+      }
+    });
+  }
+
+  startFetchingSources() {
+    var params = this.params;
+    if (params === null) {
+      params = this.params = {
+        imdb_id: this.props.movie.imdb_id || (this.props.movie.external_ids ? this.props.movie.external_ids.imdb_id : "<none>"),
+        title: this.props.movie.title || this.props.movie.name,
+        category: this.props.movie.number_of_seasons ? "tv" : "movie",
+        season: null,
+        episode: null
+      };
+    }
+    if (params.category === "tv" && (!params.season || !params.episode)) {
+      this.setState({loading: false});
+      this.promptForEpisodeDetails();
+      return;
     }
     console.log(params);
     var thisRef = this;
@@ -98,7 +134,13 @@ export default class MovieSources extends Component {
     ;
   }
 
+  componentDidMount() {
+    console.log(this.props.movie);
+    this.startFetchingSources();
+  }
+
   handleWatchClick = (e) => {
+    e.target.blur();
     var td = e.target.parentNode;
     console.log(td);
     var link = td.dataset.url;
@@ -134,7 +176,12 @@ export default class MovieSources extends Component {
           <td className="modal__sources--list__source--name content-td">{on.source}</td>
           <td className="modal__sources--list__source--title content-td">{on.title || "<none>"}</td>
           <td className="content-td">{on.quality}</td>
-          <td className="content-td" data-url={on.embed || on.ddl} data-embed={!!on.embed}><button onClick={this.handleWatchClick}>Watch</button></td>
+          <td className="content-td" data-url={on.embed || on.ddl} data-embed={!!on.embed}>
+            <button className="modal__btn modal__sources--play_btn" onClick={this.handleWatchClick}>
+              <PlayIcon className="modal__btn--icon" />
+              Watch
+            </button>
+          </td>
         </tr>
       );
     }
@@ -155,9 +202,9 @@ export default class MovieSources extends Component {
               </div>
             </div>
           </div>
-        ) : (<></>)}
+        ) : (<div className="modal__sources--pull"></div>)}
         {this.state.sources.length > 0 ? (
-          <>
+          <div className="modal__sources--list">
             <div className="tbl-header">
               <table className="tbl-table" cellPadding="0" cellSpacing="0" border="0">
                 <thead>
@@ -175,7 +222,7 @@ export default class MovieSources extends Component {
                 <tbody>{rows}</tbody>
               </table>
             </div>
-          </>
+          </div>
         ) : (<></>)}
       </div>
     );
