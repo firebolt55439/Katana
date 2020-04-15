@@ -157,10 +157,6 @@ export default class MovieSources extends Component {
   }
 
   render() {
-    // TODO: Add new sourcebox component here that is triggered on play button click, does async loading and rendering,
-    // and allows embed and ddl clicking
-    // window.open("https://www.w3schools.com", "_blank", "toolbar=no,titlebar=no,menubar=no,status=no,fullscreen=yes,scrollbars=no,resizable=no,top=0,left=0,width=500,height=500");
-    // ^ use for embed
     var rows = [];
     /*
     "title" => item title (e.g. a filename)

@@ -21,6 +21,15 @@ export default class MovieDetails extends Component {
     });
   }
 
+  componentDidUpdate(nextProps, prevState) {
+    /* Ensure movie sources reset upon modal change (for reused modals, such as the one for search) */
+    if (prevState.playButtonClicked) {
+      this.setState({
+        playButtonClicked: false
+      });
+    }
+  }
+
   render() {
     /*if (this.props.movie.spoken_languages || this.props.movie.runtime) {
       console.log(this.props.movie);
