@@ -1,4 +1,4 @@
-# ![](https://github.com/firebolt55439/katana/blob/master/demo/logo.png)  <!-- .element height="50%" width="50%" -->
+# <img src="https://github.com/firebolt55439/katana/raw/master/demo/logo.png" alt="" style="width: 30%;">
 
 Katana is a responsive front-end that emulates Netflix's style. The goal of this project is to provide a backend-agnostic front-end for movie & TV discovery & streaming.
 
