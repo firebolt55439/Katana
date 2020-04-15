@@ -14,9 +14,9 @@ Note that this project is under heavy development, with all interfaces subject t
 - Everything runs client-side, only API being called to is TMDB
 
 ## In The Works
-- Stable back-end API specification
-- Example back-end framework in Python
-- Source retrieval and rendering from back-end
+- Stable back-end API specification (in progress)
+- Example back-end framework in Python (mostly done)
+- Source retrieval and rendering from back-end (done!)
 - Chromecast and Airplay support
 
 ## Building & Running
