@@ -1,5 +1,7 @@
 # Katana
 
+![](https://github.com/firebolt55439/katana/blob/master/demo/logo.png)
+
 Katana is a responsive front-end that emulates Netflix's style. The goal of this project is to provide a backend-agnostic front-end for movie & TV discovery & streaming.
 
 More specifically, no matter where your movies are hosted (Google Drive, P2P stream, satellite, etc.) so long as your backend follows the API conventions herein laid out, you can plug-and-play this front-end into your service.
