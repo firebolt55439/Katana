@@ -6,7 +6,7 @@ import PlayIcon from '../../static/images/play-button.svg';
 
 const BACKEND_URL = (window.location.hostname == "127.0.0.1"
                      ? "http://127.0.0.1:5000"
-                     : (window.location.protocol + "//" + window.location.hostname + "/"));
+                     : window.location.protocol + "//" + window.location.hostname);
 const CancelToken = axios.CancelToken;
 
 export default class MovieSources extends Component {
@@ -68,7 +68,7 @@ export default class MovieSources extends Component {
   }
 
   startFetchingSources() {
-    console.log(window.location.hostname, window.location.protocol, BACKEND_URL);
+    // console.log(window.location.hostname, window.location.protocol, BACKEND_URL);
     var params = this.params;
     if (params === null) {
       params = this.params = {

@@ -8,7 +8,7 @@ APP_NAME = "Katana Backend"
 SOURCES_DIRECTORY = "sources/"
 DEBUG_ENABLED = False
 
-app = flask.Flask(APP_NAME)
+app = flask.Flask(APP_NAME, static_url_path='', static_folder='static')
 app.config["DEBUG"] = DEBUG_ENABLED
 CORS(app)
 
@@ -88,6 +88,12 @@ def individual_source():
 	serialized_sources = [source.__dict__ for source in found_sources]
 	return jsonify(serialized_sources)
 
+# Route for index.html
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
+
+# Main app execution hook
 if __name__ == '__main__':
 	if "PORT" in os.environ:
 		# Heroku instance running on Gunicorn
