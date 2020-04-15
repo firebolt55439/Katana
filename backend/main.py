@@ -1,3 +1,4 @@
+import os
 import flask
 from flask import request, jsonify
 from flask_cors import CORS
@@ -87,4 +88,4 @@ def individual_source():
 	serialized_sources = [source.__dict__ for source in found_sources]
 	return jsonify(serialized_sources)
 
-app.run(threaded=True)
+app.run(threaded=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
