@@ -4,7 +4,9 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
 
 import PlayIcon from '../../static/images/play-button.svg';
 
-const BACKEND_URL = "http://127.0.0.1:5000";
+const BACKEND_URL = (window.location.hostname == "127.0.0.1"
+                     ? "http://127.0.0.1:5000"
+                     : window.location.protocol + "//" + window.location.hostname + "/");
 const CancelToken = axios.CancelToken;
 
 export default class MovieSources extends Component {

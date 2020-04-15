@@ -68,7 +68,7 @@ def available_sources():
 ##
 # API Endpoint: /sources/individual
 # Method: GET
-# Parameters: QueryItem Object, augmented with an additiona field: {
+# Parameters: QueryItem Object, augmented with an additional field: {
 # 	"source": source ID, returned from /sources/available
 # }
 # Return Type: List of Source Objects
