@@ -88,4 +88,9 @@ def individual_source():
 	serialized_sources = [source.__dict__ for source in found_sources]
 	return jsonify(serialized_sources)
 
-app.run(threaded=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+if __name__ == '__main__':
+	if "PORT" in os.environ:
+		# Heroku instance running on Gunicorn
+		app.run(threaded=True)
+	else:
+		app.run(threaded=True), host='0.0.0.0', port=int(os.environ.get("PORT", 5000))
