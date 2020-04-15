@@ -68,6 +68,7 @@ export default class MovieSources extends Component {
   }
 
   startFetchingSources() {
+    console.log(window.location.hostname, window.location.protocol, BACKEND_URL);
     var params = this.params;
     if (params === null) {
       params = this.params = {
