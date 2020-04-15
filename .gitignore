@@ -21,3 +21,4 @@ backend/sources
 __pycache__/
 *.py[cod]
 
+deploy/
