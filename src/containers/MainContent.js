@@ -30,7 +30,7 @@ class MainContent extends Component {
   state = {
     /** Will hold our chosen movie to display on the header */
     selectedMovie: {},
-    selectedGenres: {}
+    selectedGenres: []
   };
 
   componentDidMount = () => {
@@ -49,9 +49,6 @@ class MainContent extends Component {
     shuffle(genreNodes);
 
     this.state.selectedGenres = genreNodes;
-  }
-
-  componentDidMount = () => {
     this.getMovie();
   };
 
