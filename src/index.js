@@ -33,6 +33,7 @@ if (FIREBASE_AUTH_ENABLED) {
 
 	/* Define our helper function to fetch the database secret with provided authorization */
 	const attemptAuthorizedDatabaseAccess = () => {
+		/* Attempt to read access token from database */
 		firestore.collection("secrets").doc("secret").get().then((snapshot) => {
 			/* Let user know they have been verified to access this information. */
 			console.log(snapshot.data());
@@ -46,7 +47,7 @@ if (FIREBASE_AUTH_ENABLED) {
 			Swal.fire({
 			  icon: "error",
 			  title: 'Unauthorized',
-			  html: 'You are not authorized to access this. Redirecting...',
+			  html: 'You are not authorized to access this. Redirecting to login...',
 			  customClass: "swal-bigger",
 			  onBeforeOpen: () => {
 			    Swal.showLoading();
@@ -58,18 +59,12 @@ if (FIREBASE_AUTH_ENABLED) {
 				auth.signOut().then(() => {
 					auth.signInWithRedirect(provider);
 				});
-			}, 500);
+			}, 750);
 		});
 	};
 
 	/* Define our authentication state change handler. */
 	const authChangeHandler = (userObj) => {
-		/* If not signed in, immediately redirect to authentication */
-		if (!auth.currentUser) {
-			auth.signInWithRedirect(provider);
-			return;
-		}
-
 		/* Let user know we are processing their authentication info */
 		console.log("Current user:", auth.currentUser);
 		Swal.fire({
