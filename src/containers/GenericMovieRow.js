@@ -17,7 +17,7 @@ export default class GenericMovieRow extends Component {
     genreHeading: null
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let {genre, type, heading} = this.props;
     if (type && !genre) {
       const arr = GENRE_IDS[type];

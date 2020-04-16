@@ -11,7 +11,7 @@ import MovieRow from './MovieRow';
 
 class NetflixOriginals extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchNetflixOriginals();
   }
 

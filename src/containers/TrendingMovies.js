@@ -11,7 +11,7 @@ import MovieRow from './MovieRow';
 
 class TrendingMovies extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTrending();
     this.props.fetchPopularTv();
   }

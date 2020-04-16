@@ -11,7 +11,7 @@ import MovieRow from './MovieRow';
 
 class TopRated extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTopRated();
   }
 

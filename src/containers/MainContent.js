@@ -33,7 +33,7 @@ class MainContent extends Component {
     selectedGenres: {}
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     var tvArr = GENRE_IDS["tv"], movieArr = GENRE_IDS["movie"];
     shuffle(tvArr);
     shuffle(movieArr);
