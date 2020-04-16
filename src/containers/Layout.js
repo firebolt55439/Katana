@@ -8,6 +8,7 @@ import Modal from '../components/UI/Modal';
 import MovieDetails from '../components/Movie/MovieDetails';
 
 import { API_KEY, API_KEY_SECONDARY } from '../store/actions/index';
+import { logEvent, logCustomEvent } from '../auth-enabled';
 
 class Layout extends Component {
 
@@ -20,6 +21,8 @@ class Layout extends Component {
     toggleModal: false,
     /** Holds the movie information for a single movie. */
     movieOverview: {},
+    /** Holds the last search term */
+    lastSearchTerm: ""
   }
 
   constructor(props) {
@@ -78,7 +81,7 @@ class Layout extends Component {
           }
         })
         /** Set our MovieList array to the movieRows array */
-        this.setState({ MovieList: movieRows });
+        this.setState({ MovieList: movieRows, lastSearchTerm: searchItem });
       }).catch(error => {
         console.log(error);
       });
@@ -123,6 +126,10 @@ class Layout extends Component {
         const movieData = res.data;
 
         this.setState({ movieOverview: movieData });
+        logEvent("Search", "Click", {
+          "title": movieData.title || movieData.name,
+          "search_term": this.state.lastSearchTerm
+        });
       }).catch(error => {
         console.log(error);
       });

@@ -1,10 +1,12 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/analytics";
 
 export const FIREBASE_AUTH_ENABLED = true;
 
-var fireAuth = null, fireDb = null, fireProvider = null;
+var fireAuth = null, fireDb = null;
+var fireProvider = null, fireAnalytics = null;
 if (FIREBASE_AUTH_ENABLED) {
 	/* NOTE: You can add your own project details here */
 	const firebaseConfig = {
@@ -18,6 +20,7 @@ if (FIREBASE_AUTH_ENABLED) {
 		measurementId: "G-ENF0CYY0CB"
 	};
 	firebase.initializeApp(firebaseConfig);
+	fireAnalytics = firebase.analytics();
 	fireAuth = firebase.auth();
 	fireDb = firebase.firestore();
 	fireProvider = new firebase.auth.GoogleAuthProvider();
@@ -26,3 +29,29 @@ if (FIREBASE_AUTH_ENABLED) {
 export const auth = fireAuth;
 export const firestore = fireDb;
 export const provider = fireProvider;
+export const analytics = fireAnalytics;
+
+export function logEvent(category, action, label) {
+	if (!analytics) return;
+	var params = {};
+	if (action) {
+		params["action"] = action;
+	}
+	if (label) {
+		if (typeof label === 'string') {
+			params["label"] = label;
+		} else {
+			for (var key in label) {
+				params[key] = label[key];
+			}
+		}
+	}
+	analytics.logEvent(category, params);
+	console.debug("ga", category, action, label);
+}
+
+export function logCustomEvent(category, custom) {
+	if (!analytics) return;
+	analytics.logEvent(category, custom);
+	console.debug("ga", category, custom);
+}

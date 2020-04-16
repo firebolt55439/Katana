@@ -5,6 +5,7 @@ import AddIcon from '../../static/images/add.svg';
 import PlayIcon from '../../static/images/play-button.svg';
 
 import MovieSources from './MovieSources';
+import { logEvent, logCustomEvent } from '../../auth-enabled';
 
 export default class MovieDetails extends Component {
   state = {
@@ -19,6 +20,7 @@ export default class MovieDetails extends Component {
     this.setState({
       playButtonClicked: true
     });
+    logEvent("Item", "Watch", this.props.movie.title || this.props.movie.name);
   }
 
   componentDidUpdate(nextProps, prevState) {

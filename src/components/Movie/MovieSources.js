@@ -4,7 +4,8 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
 
 import PlayIcon from '../../static/images/play-button.svg';
 
-import {AuthContext} from '../../auth-context';
+import { AuthContext } from '../../auth-context';
+import { logEvent, logCustomEvent } from '../../auth-enabled';
 
 const BACKEND_URL = window.location.origin;
 const CancelToken = axios.CancelToken;
@@ -34,6 +35,11 @@ export default class MovieSources extends Component {
     if (this.numSourcesRetrieved >= this.numSources) {
       this.setState({
         loading: false
+      });
+      logEvent("Sources", "Retrieved", {
+        "title": this.props.movie.title || this.props.movie.name,
+        "number_of_sources": this.numSourcesRetrieved,
+        "number_of_hosts": this.state.sources.length
       });
     }
     console.log("Marked source retrieved (%d out of %d)", this.numSourcesRetrieved, this.numSources);
@@ -65,6 +71,11 @@ export default class MovieSources extends Component {
         params.episode = result.value[1];
         thisRef.setState({loading: true});
         thisRef.startFetchingSources();
+        logEvent("TV", "Select", {
+          "title": this.props.movie.title || this.props.movie.name,
+          "season": params.season,
+          "episode": params.episode
+        });
       }
     });
   }
@@ -155,6 +166,12 @@ export default class MovieSources extends Component {
     console.log("embed link:", link);
     window.open(link, "_blank", "toolbar=no,titlebar=no,menubar=no,status=no,fullscreen=yes,scrollbars=no,resizable=no,top=0,left=0,width=" + screen.width.toString() + ",height=" + screen.height.toString());
     e.preventDefault();
+    logEvent("Sources", "Click", {
+      "title": this.props.movie.title || this.props.movie.name,
+      "season": this.params.season,
+      "episode": this.params.episode,
+      "host": td.dataset.source
+    });
   }
 
   componentWillUnmount() {
@@ -178,7 +195,7 @@ export default class MovieSources extends Component {
           <td className="modal__sources--list__source--name content-td">{on.source}</td>
           <td className="modal__sources--list__source--title content-td">{on.title || "<none>"}</td>
           <td className="content-td">{on.quality}</td>
-          <td className="content-td" data-url={on.embed || on.ddl} data-embed={!!on.embed}>
+          <td className="content-td" data-url={on.embed || on.ddl} data-embed={!!on.embed} data-source={on.source}>
             <button className="modal__btn modal__sources--play_btn" onClick={this.handleWatchClick}>
               <PlayIcon className="modal__btn--icon" />
               Watch

@@ -9,7 +9,6 @@ import TopRated from './TopRated';
 import GenericMovieRow from './GenericMovieRow';
 
 import { API_KEY } from '../store/actions/index';
-
 import GENRE_IDS from './genres.json';
 
 /**
@@ -54,6 +53,7 @@ class MainContent extends Component {
 
 
   getMovie = () => {
+    /* This function fills in the chosen jumbotron movie */
     Array.prototype.random = function () {
       return this[Math.floor((Math.random()*this.length))];
     };

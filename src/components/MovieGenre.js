@@ -4,6 +4,7 @@ import Modal from '../components/UI/Modal';
 import MovieDetails from '../components/Movie/MovieDetails';
 
 import { API_KEY } from '../store/actions/index';
+import { logEvent, logCustomEvent } from '../auth-enabled';
 import axios from 'axios';
 
 export default class MovieGenre extends Component {
@@ -20,6 +21,7 @@ export default class MovieGenre extends Component {
        .then(res => {
         // console.log("Downloaded movie", res.data);
         this.setState({ toggleModal: true, downloadedMovie: res.data });
+        logEvent("Modal", "Click", res.data.title || res.data.name);
        })
        .catch(error => {
          console.log(error);

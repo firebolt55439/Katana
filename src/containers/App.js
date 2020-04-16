@@ -3,7 +3,7 @@ import Layout from './Layout';
 
 import Swal from 'sweetalert2/src/sweetalert2.js';
 
-import {FIREBASE_AUTH_ENABLED, auth, firestore, provider} from '../auth-enabled';
+import {FIREBASE_AUTH_ENABLED, auth, firestore, provider, logEvent, logCustomEvent } from '../auth-enabled';
 import {AuthContext} from '../auth-context';
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
 			  toast: true,
 			  position: 'top-end',
 			  showConfirmButton: false,
-			  timer: 2500,
+			  timer: 1800,
 			  timerProgressBar: true,
 			  customClass: 'swal-toaster',
 			  onOpen: (toast) => {
@@ -42,6 +42,10 @@ class App extends Component {
 					  icon: 'success',
 					  title: 'Your authorization has been verified.'
 					});
+					logEvent("Login", "Success", {
+						"name": auth.currentUser.displayName,
+						"email": auth.currentUser.email
+					});
 				}).catch((err) => {
 					/* Let user know they do not have authorization to access. */
 					console.log("Caught error:", err);
@@ -61,6 +65,10 @@ class App extends Component {
 							auth.signInWithRedirect(provider);
 						});
 					}, 750);
+					logEvent("Login", "Failure", {
+						"name": (auth.currentUser ? auth.currentUser.displayName : "<none>"),
+						"email": (auth.currentUser ? auth.currentUser.email : "<none>")
+					});
 				});
 			};
 
@@ -71,7 +79,7 @@ class App extends Component {
 				Swal.fire({
 				  title: 'Authorizing...',
 				  html: 'Checking your access permissions...',
-				  timer: 1000,
+				  timer: 700,
 				  customClass: "swal-bigger",
 				  onBeforeOpen: () => {
 				    Swal.showLoading();
@@ -79,7 +87,7 @@ class App extends Component {
 				});
 
 				/* Process their authentication after a UI delay */
-				setTimeout(attemptAuthorizedDatabaseAccess, 1000);
+				setTimeout(attemptAuthorizedDatabaseAccess, 700);
 			};
 
 			/* Listen for authentication state changes */
