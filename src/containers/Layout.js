@@ -28,6 +28,7 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.escFunction = this.escFunction.bind(this);
+    this.searchTimer = null;
   }
 
   goToHome() {
@@ -104,6 +105,20 @@ class Layout extends Component {
         toggleMovieList: true
       });
     }
+
+    /** Wait for user to stop typing before recording search */
+    clearTimeout(this.searchTimer);
+    if (userInput && userInput.length > 0) {
+      this.searchTimer = setTimeout(() => {
+        this.triggerSearchChange(userInput);
+      }, 850);
+    }
+  }
+
+  triggerSearchChange = (input) => {
+    logEvent("Search", "Enter", {
+      "search_term": input
+    });
   }
 
   /* Get the appropriate details for a specific movie that was clicked */
