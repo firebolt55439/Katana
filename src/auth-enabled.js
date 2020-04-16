@@ -35,7 +35,7 @@ export function logEvent(category, action, label) {
 	if (!analytics) return;
 	var params = {};
 	if (action) {
-		params["action"] = action;
+		category += action;
 	}
 	if (label) {
 		if (typeof label === 'string') {
@@ -47,7 +47,7 @@ export function logEvent(category, action, label) {
 		}
 	}
 	analytics.logEvent(category, params);
-	console.debug("ga", category, action, label);
+	console.debug("ga", category, params);
 }
 
 export function logCustomEvent(category, custom) {
