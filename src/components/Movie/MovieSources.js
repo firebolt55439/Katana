@@ -4,9 +4,9 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
 
 import PlayIcon from '../../static/images/play-button.svg';
 
-const BACKEND_URL = (window.location.hostname == "127.0.0.1"
-                     ? "http://127.0.0.1:5000"
-                     : window.location.protocol + "//" + window.location.hostname);
+import {AuthContext} from '../../auth-context';
+
+const BACKEND_URL = window.location.origin;
 const CancelToken = axios.CancelToken;
 
 export default class MovieSources extends Component {
@@ -14,7 +14,9 @@ export default class MovieSources extends Component {
     loading: true,
     sources: [],
     cancelSource: CancelToken.source()
-  }
+  };
+
+  static contextType = AuthContext;
 
   constructor(props) {
     super(props);
@@ -68,7 +70,7 @@ export default class MovieSources extends Component {
   }
 
   startFetchingSources() {
-    // console.log(window.location.hostname, window.location.protocol, BACKEND_URL);
+    const userToken = this.context;
     var params = this.params;
     if (params === null) {
       params = this.params = {
@@ -76,7 +78,8 @@ export default class MovieSources extends Component {
         title: this.props.movie.title || this.props.movie.name,
         category: this.props.movie.number_of_seasons ? "tv" : "movie",
         season: null,
-        episode: null
+        episode: null,
+        token: userToken
       };
     }
     if (params.category === "tv" && (!params.season || !params.episode)) {
@@ -187,7 +190,7 @@ export default class MovieSources extends Component {
     return (
       // <Table, live-updating with props as more sources fetched in async fashion from URL's>
       <div className="modal__sources">
-        <h3>Sources:</h3>
+        <h3>Sources{this.state.sources.length > 0 ? (" (" + this.state.sources.length.toString() + ")") : ""}:</h3>
         {this.state.loading ? (
           <div className="modal__sources--loading">
             <div className="source-loader">
