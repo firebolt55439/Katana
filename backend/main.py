@@ -1,8 +1,9 @@
 import os
 import flask
-from flask import request, jsonify
+from flask import abort, request, jsonify
 from flask_cors import CORS
 from source import QueryItem
+from functools import wraps
 
 APP_NAME = "Katana Backend"
 SOURCES_DIRECTORY = "sources/"
@@ -24,6 +25,15 @@ for (module_index, file) in enumerate(os.listdir(SOURCES_DIRECTORY)):
 		spec.loader.exec_module(module_object)
 		main_source = module_object.MainSource()
 		sources.append(main_source)
+
+def require_secret(fn):
+	from secrets.secret import SECRET
+	@wraps(fn)
+	def inner(*args, **kwargs):
+		if "token" not in request.args or request.args["token"] != SECRET:
+			abort(403, description="Access denied")
+		return fn(*args, **kwargs)
+	return inner
 
 ##
 # Global Object Definitions:
@@ -47,6 +57,7 @@ for (module_index, file) in enumerate(os.listdir(SOURCES_DIRECTORY)):
 # }
 ##
 @app.route('/subtitles', methods=['GET'])
+@require_secret
 def subtitles():
     return jsonify([])
 
@@ -57,6 +68,7 @@ def subtitles():
 # Return Type: List of SourceID's (generic types)
 ##
 @app.route('/sources/available', methods=['GET'])
+@require_secret
 def available_sources():
 	item = QueryItem.from_args(request.args)
 	avail = []
@@ -81,6 +93,7 @@ def available_sources():
 # }
 ##
 @app.route('/sources/individual', methods=['GET'])
+@require_secret
 def individual_source():
 	item = QueryItem.from_args(request.args)
 	source_id = int(request.args["source"])
@@ -92,6 +105,12 @@ def individual_source():
 @app.route('/')
 def root():
     return app.send_static_file('index.html')
+
+# Catch-all route
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return app.send_static_file(path)
 
 # Main app execution hook
 if __name__ == '__main__':
