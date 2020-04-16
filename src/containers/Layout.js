@@ -28,6 +28,7 @@ class Layout extends Component {
   }
 
   goToHome() {
+    // console.log("Going home with state", this.state);
     if (this.state.toggleModal) {
       this.setState({toggleModal: false});
     } else if (!this.state.toggleMovieList) {
@@ -149,7 +150,7 @@ class Layout extends Component {
 
         <Modal show={this.state.toggleModal}
           modalClosed={this.closeModal}
-          movie={this.state.movieOverview}>
+          movie={this.state.movieOverview} noCloseEsc={true}>
 
           <MovieDetails movie={this.state.movieOverview} />
         </Modal>

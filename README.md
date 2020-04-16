@@ -10,8 +10,8 @@ Note that this project is under heavy development, with all interfaces subject t
 - Responsive and visually appealing interface
 - Highly adaptable and extensible
 - Source components are modularized
-- React best-practices are used (mostly)
 - Everything runs client-side, only API being called to is TMDB
+- Can easily deploy to Heroku
 
 ## In The Works
 - Stable back-end API specification (in progress)
@@ -26,6 +26,8 @@ To build: `npm run build`
 To start: `npm run start`
 
 Live-reloading is automatically enabled (can be changed in webpack config). React developer tools for Chrome come highly recommended.
+
+**Note:** You will likely need to disable Firebase Authentication to run locally (or you can modify it to your own project's Firebase config). All details are in `src/auth-enabled.js`, including the `FIREBASE_AUTH_ENABLED` setting.
 
 ## Current Visual State
 ![](https://github.com/firebolt55439/katana/blob/master/demo/narrow_home.jpg)

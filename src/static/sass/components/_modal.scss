@@ -378,3 +378,25 @@
 .swal-bigger {
    font-size: 2rem;
 }
+
+.swal-toaster {
+   font-size: 1.5rem !important;
+   background: #fff !important;
+}
+
+.swal-toaster > .swal2-success-circular-line-left {
+   background-color: white !important;
+}
+
+.swal-toaster > .swal2-success-fix {
+   background-color: white !important;
+}
+
+.swal-toaster > .swal2-success-circular-line-right {
+   background-color: white !important;
+}
+
+.swal-toaster #swal2-title {
+   font-weight: 500 !important;
+   color: #595959 !important;
+}

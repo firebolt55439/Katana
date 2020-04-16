@@ -12,7 +12,9 @@ export default class Modal extends Component {
 
    escFunction(event){
       if (event.keyCode === 27) {
-         this.props.modalClosed();
+         if (!this.props.noCloseEsc) {
+            this.props.modalClosed();
+         }
       }
    }
 
