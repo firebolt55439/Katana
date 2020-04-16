@@ -3,7 +3,7 @@ import Layout from './Layout';
 
 import Swal from 'sweetalert2/src/sweetalert2.js';
 
-import {FIREBASE_AUTH_ENABLED, auth, firestore, provider, logEvent, logCustomEvent } from '../auth-enabled';
+import {FIREBASE_AUTH_ENABLED, auth, firestore, provider, analytics, logEvent, logCustomEvent } from '../auth-enabled';
 import {AuthContext} from '../auth-context';
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
 			  toast: true,
 			  position: 'top-end',
 			  showConfirmButton: false,
-			  timer: 1800,
+			  timer: 2200,
 			  timerProgressBar: true,
 			  customClass: 'swal-toaster',
 			  onOpen: (toast) => {
@@ -31,6 +31,11 @@ class App extends Component {
 
 			/* Define our helper function to fetch the database secret with provided authorization */
 			const attemptAuthorizedDatabaseAccess = () => {
+				/* Set user ID for analytics */
+				if (auth.currentUser && auth.currentUser.email) {
+					analytics.setUserId(btoa(auth.currentUser.email));
+				}
+
 				/* Attempt to read access token from database */
 				firestore.collection("secrets").doc("secret").get().then((snapshot) => {
 					/* Let user know they have been verified to access this information. */
