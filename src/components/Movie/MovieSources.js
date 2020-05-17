@@ -5,7 +5,7 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
 import PlayIcon from '../../static/images/play-button.svg';
 
 import { AuthContext } from '../../auth-context';
-import { logEvent, logCustomEvent } from '../../auth-enabled';
+import { logEvent, logCustomEvent, auth } from '../../auth-enabled';
 
 const BACKEND_URL = window.location.origin;
 const CancelToken = axios.CancelToken;
@@ -90,7 +90,8 @@ export default class MovieSources extends Component {
         category: this.props.movie.number_of_seasons ? "tv" : "movie",
         season: null,
         episode: null,
-        token: userToken
+        token: userToken,
+        uid: btoa(auth.currentUser ? btoa(auth.currentUser.email) : "")
       };
     }
     if (params.category === "tv" && (!params.season || !params.episode)) {

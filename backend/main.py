@@ -97,6 +97,7 @@ def available_sources():
 def individual_source():
 	item = QueryItem.from_args(request.args)
 	source_id = int(request.args["source"])
+	print("Searching source:", sources[source_id].source_name)
 	found_sources = sources[source_id].search(item)
 	serialized_sources = [source.__dict__ for source in found_sources]
 	return jsonify(serialized_sources)
