@@ -208,7 +208,7 @@ export default class MovieSources extends Component {
     return (
       // <Table, live-updating with props as more sources fetched in async fashion from URL's>
       <div className="modal__sources">
-        <h3>Sources{this.state.sources.length > 0 ? (" (" + this.state.sources.length.toString() + ")") : ""}:</h3>
+        <h3>Sources{this.state.sources.length > 0 ? (" (" + this.state.sources.length.toString() + ")") : ""}{this.props.movie.number_of_seasons && this.params ? (` for S${this.params.season}E${this.params.episode}`) : ""}</h3>
         {this.state.loading ? (
           <div className="modal__sources--loading">
             <div className="source-loader">
