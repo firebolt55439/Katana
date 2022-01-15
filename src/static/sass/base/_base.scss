@@ -37,7 +37,7 @@
 :global(q:before), :global(q:after) {
 	content: '';
 	content: none;
-} 
+}
 :global(table) {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -47,6 +47,7 @@ body {
 	font-family: 'Hind', sans-serif;
 	box-sizing: border-box;
 	background-color: $color-background;
+	margin: 0px;
 }
 
 ::-webkit-scrollbar {
@@ -54,18 +55,18 @@ body {
 }
 
 html {
-   // this defines what 1rem is --> font root size 
-	 font-size: 62.5%; // 10/16, 1rem = 10px; 
-	 
+   // this defines what 1rem is --> font root size
+	 font-size: 62.5%; // 10/16, 1rem = 10px;
+
 	 @include responsive(tab_port) {
-		 font-size: 50%; 
+		 font-size: 50%;
 	 }
 }
 
-// GRID AREA 
+// GRID AREA
 .container {
 
-	display: grid;      
-	grid-template-rows: min-content min-content min-content min-content; 
+	display: grid;
+	grid-template-rows: min-content min-content min-content min-content;
 	grid-template-columns:  4% repeat(10, 1fr) 4%;
 }

@@ -37,6 +37,10 @@
          &:hover {
             transform: scale(1.45);
             opacity: 1;
+
+            &:nth-child(1) {
+               transform: scale(1.45) translateX(5rem);
+            }
          }
       }
 
@@ -52,7 +56,19 @@
          }
       }
 
-      &--movie:hover ~ &--movie {
+      &--movie:hover:nth-child(1) ~ &--movie {
+          transform: translate3d(14rem, 0, 0);
+
+         @include responsive(tab_port) {
+            transform: translate3d(12.75rem, 0, 0);
+         }
+
+         @include responsive(phone) {
+            transform: translate3d(10rem, 0, 0);
+         }
+      }
+
+      &--movie:hover:not(:nth-child(1)) ~ &--movie {
           transform: translate3d(7rem, 0, 0);
 
          @include responsive(tab_port) {
@@ -66,19 +82,27 @@
 
 
       &:hover > &--movie__netflix  {
-         transform: translate3d(-1rem, 0, 0);
+         transform: translate3d(-2rem, 0, 0);
       }
 
-      &--movie__netflix:hover ~ &--movie__netflix {
-          transform: translate3d(1rem, 0, 0);
+      &--movie__netflix:hover:nth-child(1) ~ &--movie__netflix {
+          transform: translate3d(4rem, 0, 0);
+      }
+
+      &--movie__netflix:hover:not(:nth-child(1)) ~ &--movie__netflix {
+          transform: translate3d(2rem, 0, 0);
       }
 
       &:hover &--movie__netflix {
          opacity: .3;
 
          &:hover {
-            transform: scale(1.1);
+            transform: scale(1.14);
             opacity: 1;
+
+            &:nth-child(1) {
+               transform: scale(1.14) translateX(2rem);
+            }
          }
       }
 
@@ -88,7 +112,7 @@
          transform: center left;
          padding-top: 3.5rem;
          padding-bottom: 4rem;
-         height: 24.25rem;
+         height: 16.75rem;
          min-height: 0;
 
          @include responsive(tab_port) {
@@ -109,7 +133,7 @@
             padding-top: 3rem;
             padding-bottom: 4rem;
             padding-right: 0.5rem;
-            height: 52rem;
+            height: 45rem;
             cursor: pointer;
             transition: all 450ms;
             transform: center left;
@@ -198,7 +222,7 @@
 
             &__desc {
                padding-top: 1rem;
-               font-size: 1.6rem;
+               font-size: 1.4rem;
             }
          }
       }
